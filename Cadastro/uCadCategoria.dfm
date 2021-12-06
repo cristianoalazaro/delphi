@@ -22,6 +22,7 @@ inherited frmCadCategoria: TfrmCadCategoria
     end
   end
   inherited pnlRodape: TPanel
+    ExplicitTop = 310
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
     end
