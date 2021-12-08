@@ -27,7 +27,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     ActivePage = tabListagem
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 553
     object tabListagem: TTabSheet
       Caption = 'Listagem'
       object pnlListagemTopo: TPanel
@@ -37,7 +36,6 @@ object frmTelaHeranca: TfrmTelaHeranca
         Height = 65
         Align = alTop
         TabOrder = 0
-        ExplicitWidth = 545
         object lblIndice: TLabel
           Left = 25
           Top = 0
@@ -79,6 +77,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnDblClick = grdListagemDblClick
         OnTitleClick = grdListagemTitleClick
       end
     end
@@ -94,7 +93,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     Height = 60
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 553
     DesignSize = (
       607
       60)
