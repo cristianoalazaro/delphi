@@ -43,7 +43,6 @@ type
     procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
-    EstadoDoCadastro: TEstadoDoCadastro;
     procedure ControlarBotoes(btnNovo, btnAlterar,
           btnCancelar, btnGravar, btnApagar: TBitBtn;
           btnNavigator: TDBNavigator; pgcPrincipal: TPageControl;
@@ -59,7 +58,8 @@ type
   public
     { Public declarations }
     IndiceAtual: string;
-    function Excluir: boolean; virtual;
+    EstadoDoCadastro: TEstadoDoCadastro;
+    function Apagar: boolean; virtual;
     function Gravar(EstadoDoCadastro: TEstadoDoCadastro): boolean; virtual;
   end;
 
@@ -159,7 +159,7 @@ end;
 {$EndRegion}
 
 {$Region 'Métodos Virtuais'}
-function TfrmTelaHeranca.Excluir: boolean;
+function TfrmTelaHeranca.Apagar: boolean;
 begin
   ShowMessage('Deletado');
   Result := true;
@@ -195,11 +195,12 @@ end;
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
   try
-    if Excluir then begin
+    if Apagar then begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
                 btnApagar, btnNavigator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0);
       LimparEdits;
+      qryListagem.Refresh;
     end
     else begin
       MessageDlg('Erro na Exclusão', mtError, [mbOk],0);
@@ -234,6 +235,7 @@ begin
       ControlarIndiceTab(pgcPrincipal, 0);
       EstadoDoCadastro := ecNenhum;
       LimparEdits;
+      qryListagem.Refresh;
     end
     else
       MessageDlg('Erro na gravação', mtError, [mbOk],0);

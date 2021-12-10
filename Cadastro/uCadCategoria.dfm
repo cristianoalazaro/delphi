@@ -3,7 +3,6 @@ inherited frmCadCategoria: TfrmCadCategoria
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    ActivePage = tabManutencao
     inherited tabListagem: TTabSheet
       inherited grdListagem: TDBGrid
         Color = clBtnFace
@@ -23,7 +22,7 @@ inherited frmCadCategoria: TfrmCadCategoria
     end
     inherited tabManutencao: TTabSheet
       object edtCategoriaId: TLabeledEdit
-        Tag = 2
+        Tag = 1
         Left = 12
         Top = 21
         Width = 121
@@ -50,6 +49,10 @@ inherited frmCadCategoria: TfrmCadCategoria
     end
   end
   inherited pnlRodape: TPanel
+    inherited btnNovo: TBitBtn
+      Left = 7
+      ExplicitLeft = 7
+    end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
     end
