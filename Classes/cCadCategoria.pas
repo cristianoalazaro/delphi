@@ -83,15 +83,57 @@ end;
 
 {$Region 'Crud'}
 function TCategoria.Apagar: Boolean;
+  var Qry: TZQuery;
 begin
-  ShowMessage('Apagado');
-  Result := true;
+
+  if MessageDlg('Apagar o Registro: '+#13+#13+
+                'Código: '+IntToStr(F_ID)+#13+
+                'Descrição: '+F_Description, mtConfirmation,[mbYes, mbNo],0) = mrNo then begin
+    Result := false;
+    abort;
+end;
+
+  try
+    Result := true;
+    Qry := TZQuery.Create(nil);
+    Qry.Connection := Conexao;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('DELETE FROM Categorias ' +
+                'WHERE Id = :Id ');
+    Qry.ParamByName('Id').AsInteger := id;
+    try
+      Qry.ExecSQL;
+    except
+      Result := false;
+    end;
+  finally
+    if Assigned(Qry) then
+      FreeAndNil(Qry);    
+  end;
 end;
 
 function TCategoria.Atualizar: Boolean;
+  var Qry: TZQuery;
 begin
-  ShowMessage('Atualizado');
-  Result := true;
+  try
+    Result := true;
+    Qry := TZQuery.Create(nil);
+    Qry.Connection := Conexao;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('UPDATE CATEGORIAS ' +
+                'SET Description = :Description ' +
+                'WHERE Id = :Id ');
+    Qry.ParamByName('Id').AsInteger         := Self.ID;
+    Qry.ParamByName('Description').AsString := Self.Description;
+  try
+    Qry.ExecSQL;
+  except
+    Result := false;
+  end;
+  finally
+    if Assigned(Qry) then
+      FreeAndNil(Qry);    
+  end;
 end;
 
 function TCategoria.Inserir: Boolean;
@@ -103,7 +145,7 @@ begin
     Qry.Connection := Conexao;
     Qry.SQL.Clear;
     Qry.SQL.Add('INSERT INTO Categorias (Description) VALUES (:Description)');
-    Qry.ParamByName('Description').Value := Self.Description;
+    Qry.ParamByName('Description').AsString := Self.Description;
 
     try
       Qry.ExecSQL;
@@ -117,8 +159,30 @@ begin
 end;
 
 function TCategoria.Selecionar(id: Integer): Boolean;
+  var Qry: TZQuery;
 begin
+  try
   Result := true;
+  Qry := TZQuery.Create(nil);
+  Qry.Connection := Conexao;
+  Qry.SQL.Clear;
+  Qry.SQL.Add(' SELECT Id '          +
+              ' ,Description '       +
+              ' FROM dbo.CATEGORIAS' +
+              ' WHERE Id = :Id ');
+  Qry.ParamByName('Id').AsInteger := id;
+
+  try
+    Qry.Open;
+    Self.ID          := Qry.FieldByName('Id').AsInteger;
+    Self.Description := Qry.FieldByName('Description').AsString;
+  Except
+    Result := false;
+  end;
+  finally
+    if Assigned(Qry) then
+      FreeAndNil(Qry);
+  end;
 end;
 {$EndRegion}
 

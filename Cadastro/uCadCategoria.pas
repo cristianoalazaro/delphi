@@ -17,6 +17,7 @@ type
     edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
     oCategoria: TCategoria;
@@ -37,7 +38,8 @@ implementation
 {$Region 'Override'}
 function TfrmCadCategoria.Apagar: boolean;
 begin
-  Result := oCategoria.Apagar;
+  if oCategoria.Selecionar(qryListagem.FieldByName('Id').AsInteger) then
+    Result := oCategoria.Apagar;
 end;
 
 function TfrmCadCategoria.Gravar(EstadoDoCadastro: TEstadoDoCadastro): boolean;
@@ -55,6 +57,21 @@ begin
     Result := oCategoria.Atualizar;
 end;
 {$EndRegion}
+
+procedure TfrmCadCategoria.btnAlterarClick(Sender: TObject);
+begin
+  if oCategoria.Selecionar(qryListagem.FieldByName('Id').AsInteger) then begin
+    edtCategoriaId.Text := IntToStr(oCategoria.ID);
+    edtDescricao.Text   := oCategoria.Description;
+  end
+  else begin
+    btnCancelar.Click;
+    Abort;
+  end;
+
+  inherited;
+
+end;
 
 procedure TfrmCadCategoria.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
