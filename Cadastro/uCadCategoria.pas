@@ -18,6 +18,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnAlterarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
   private
     { Private declarations }
     oCategoria: TCategoria;
@@ -70,7 +71,12 @@ begin
   end;
 
   inherited;
+end;
 
+procedure TfrmCadCategoria.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+  edtDescricao.SetFocus;
 end;
 
 procedure TfrmCadCategoria.FormClose(Sender: TObject; var Action: TCloseAction);
