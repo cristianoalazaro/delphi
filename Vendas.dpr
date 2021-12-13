@@ -9,7 +9,9 @@ uses
   uEnum in 'Heranca\uEnum.pas',
   cCadCategoria in 'Classes\cCadCategoria.pas',
   uCadCliente in 'Cadastro\uCadCliente.pas' {frmCadCliente},
-  cCadCliente in 'Classes\cCadCliente.pas';
+  cCadCliente in 'Classes\cCadCliente.pas',
+  uCadProduto in 'Cadastro\uCadProduto.pas' {frmCadProduto},
+  cCadProduto in 'Classes\cCadProduto.pas';
 
 {$R *.res}
 
