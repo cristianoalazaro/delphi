@@ -41,6 +41,8 @@ type
     procedure grdListagemTitleClick(Column: TColumn);
     procedure mskPesquisarChange(Sender: TObject);
     procedure grdListagemDblClick(Sender: TObject);
+    procedure grdListagemKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure ControlarBotoes(btnNovo, btnAlterar,
@@ -61,6 +63,7 @@ type
     EstadoDoCadastro: TEstadoDoCadastro;
     function Apagar: boolean; virtual;
     function Gravar(EstadoDoCadastro: TEstadoDoCadastro): boolean; virtual;
+    procedure BloqueiaCTRL_DEL_DBGRID(var Key: Word; Shift: TShiftState);
   end;
 
 var
@@ -165,6 +168,13 @@ begin
     if Components[i] is TMaskEdit then
       TMaskEdit(Components[i]).Text := EmptyStr;
   end;
+end;
+
+procedure TfrmTelaHeranca.BloqueiaCTRL_DEL_DBGRID(var Key: Word; Shift: TShiftState);
+begin
+  //Bloqueia o CTRL + DEL
+  if (Shift = [ssCtrl]) and (Key = 46) then
+    Key := 0;
 end;
 {$EndRegion}
 
@@ -287,6 +297,12 @@ end;
 procedure TfrmTelaHeranca.grdListagemDblClick(Sender: TObject);
 begin
   btnAlterar.Click;
+end;
+
+procedure TfrmTelaHeranca.grdListagemKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  BloqueiaCTRL_DEL_DBGRID(Key,Shift);
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);

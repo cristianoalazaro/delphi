@@ -1,0 +1,55 @@
+IF OBJECT_ID('CATEGORIAS') IS NULL
+BEGIN
+  CREATE TABLE Categorias(ID INTEGER IDENTITY(1,1) NOT NULL
+                         ,Descricao VARCHAR(30)
+						 ,PRIMARY KEY(ID))
+END
+
+IF OBJECT_ID('CLIENTES') IS NULL
+BEGIN
+  CREATE TABLE Clientes(ID INTEGER IDENTITY(1,1) NOT NULL
+                       ,Nome VARCHAR(60)
+					   ,Endereco VARCHAR(60)
+					   ,Cidade VARCHAR(50)
+					   ,Bairro VARCHAR(40)
+					   ,Estado CHAR(2)
+					   ,CEP VARCHAR(9)
+					   ,Telefone VARCHAR(14)
+					   ,Email VARCHAR(100)
+					   ,DataNascimento DATETIME
+					   ,PRIMARY KEY(ID))
+END
+
+IF OBJECT_ID('PRODUTOS') IS NULL
+BEGIN
+  CREATE TABLE PRODUTOS(ID INTEGER IDENTITY(1,1) NOT NULL
+                       ,Nome VARCHAR(60)
+					   ,Descricao VARCHAR(255)
+					   ,Valor DECIMAL(18,5) DEFAULT 0.00000
+					   ,Quantidade DECIMAL(18,5) default 0.00000
+					   ,CategoriaID INTEGER
+					   ,PRIMARY KEY(ID)
+					   ,CONSTRAINT FK_PRODUTOS_CATEGORIAS FOREIGN KEY (CategoriaID) REFERENCES Categorias(ID))				
+END
+
+IF OBJECT_ID('VENDAS') IS NULL
+BEGIN
+CREATE TABLE VENDAS(ID INTEGER IDENTITY(1,1) NOT NULL
+                   ,ClienteID INTEGER NOT NULL
+				   ,Data_Venda DATETIME DEFAULT GETDATE()
+				   ,Total_Venda DECIMAL(18,5) DEFAULT 0.0000
+				   ,PRIMARY KEY(ID)
+				   ,CONSTRAINT FK_VENDAS_CLIENTES FOREIGN KEY (ClienteID) REFERENCES Clientes(ID))
+END
+
+IF OBJECT_ID('VENDAS_ITEMS') IS NULL
+BEGIN
+CREATE TABLE VENDAS_ITEMS(VendaID INTEGER NOT NULL
+                         ,ProdutoID INTEGER NOT NULL
+						 ,Data_Venda DATETIME DEFAULT GETDATE()
+						 ,Valor_Unitario DECIMAL(18,5) DEFAULT 0.0000
+						 ,Quantidade DECIMAL(18,5) DEFAULT 0.0000
+						 ,Total_Produto DECIMAL(18,5) DEFAULT 0.0000
+						 ,PRIMARY KEY(VendaID, ProdutoID)
+						 ,CONSTRAINT FK_Vendas_Items_Produtos FOREIGN KEY (ProdutoID) REFERENCES Produtos(ID))
+END
