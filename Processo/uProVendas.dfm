@@ -7,7 +7,6 @@ inherited frmProVenda: TfrmProVenda
   inherited pgcPrincipal: TPageControl
     Width = 656
     ActivePage = tabManutencao
-    ExplicitTop = 8
     ExplicitWidth = 656
     inherited tabListagem: TTabSheet
       ExplicitWidth = 648
@@ -112,9 +111,9 @@ inherited frmProVenda: TfrmProVenda
           object Label2: TLabel
             Left = 1
             Top = -1
-            Width = 33
+            Width = 38
             Height = 13
-            Caption = 'Cliente'
+            Caption = 'Produto'
           end
           object Label4: TLabel
             Left = 249
@@ -149,6 +148,7 @@ inherited frmProVenda: TfrmProVenda
             ListField = 'Nome'
             ListSource = dtmVenda.dtsProduto
             TabOrder = 0
+            OnExit = dboProdutoExit
           end
           object edtValorUnitario: TCurrencyEdit
             Left = 247
@@ -156,14 +156,16 @@ inherited frmProVenda: TfrmProVenda
             Width = 74
             Height = 21
             TabOrder = 1
+            OnExit = edtValorUnitarioExit
           end
           object edtQuantidade: TCurrencyEdit
-            Left = 335
+            Left = 334
             Top = 14
             Width = 73
             Height = 21
             DisplayFormat = ' ,0.00;-R$ ,0.00'
             TabOrder = 2
+            OnExit = edtQuantidadeExit
           end
           object edtTotalProduto: TCurrencyEdit
             Left = 422
@@ -171,11 +173,12 @@ inherited frmProVenda: TfrmProVenda
             Width = 72
             Height = 21
             TabStop = False
+            Enabled = False
             ParentColor = True
             ReadOnly = True
             TabOrder = 3
           end
-          object BitBtn1: TBitBtn
+          object btnAidicionarItem: TBitBtn
             Left = 499
             Top = 12
             Width = 70
@@ -209,8 +212,9 @@ inherited frmProVenda: TfrmProVenda
               FFFF00FFFF00FFFF00FFC0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
               C0C0C0C0C0C0C0C0FF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 4
+            OnClick = btnAidicionarItemClick
           end
-          object BitBtn2: TBitBtn
+          object btnApagarItem: TBitBtn
             Left = 574
             Top = 12
             Width = 67
@@ -245,6 +249,7 @@ inherited frmProVenda: TfrmProVenda
               00FFFF00FFFF00FFFF00FFFF00FF5050A95858AFFF00FFFF00FF}
             TabOrder = 5
             TabStop = False
+            OnClick = btnApagarItemClick
           end
         end
         object Panel3: TPanel
@@ -268,6 +273,7 @@ inherited frmProVenda: TfrmProVenda
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnDblClick = dbGridItemVendasDblClick
             OnKeyDown = dbGridItemVendasKeyDown
             Columns = <
               item
@@ -321,11 +327,12 @@ inherited frmProVenda: TfrmProVenda
             Font.Style = [fsBold]
             ParentFont = False
           end
-          object edtValorTotal: TCurrencyEdit
+          object edtTotalVenda: TCurrencyEdit
             Left = 459
             Top = 10
             Width = 121
             Height = 21
+            Enabled = False
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -11

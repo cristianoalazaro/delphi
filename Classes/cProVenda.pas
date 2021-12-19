@@ -109,13 +109,13 @@ begin
       Qry.Connection := Conexao;
       Qry.SQL.Clear;
       Qry.SQL.Add('UPDATE Vendas SET ClienteID    = :ClienteID ' +
-                                     ',DataVenda  = :DataVenda ' +
-                                     ',TotalVenda = :TotalVenda ' +
+                                     ',Data_Venda  = :Data_Venda ' +
+                                     ',Total_Venda = :Total_Venda ' +
                   'WHERE ID = :ID');
       Qry.ParamByName('ID').AsInteger         := F_ID;
       Qry.ParamByName('ClienteID').AsInteger  := F_ClienteID;
-      Qry.ParamByName('DataVenda').AsDateTime := F_DataVenda;
-      Qry.ParamByName('TotalVenda').AsFloat   := F_TotalVenda;
+      Qry.ParamByName('Data_Venda').AsDateTime := F_DataVenda;
+      Qry.ParamByName('Total_Venda').AsFloat   := F_TotalVenda;
 
       try
         Qry.ExecSQL;
@@ -140,14 +140,14 @@ begin
     Qry.SQL.Clear;
     //Faz a inclusão no banco
     Qry.SQL.Add('INSERT INTO Vendas(ClienteID ' +
-                                  ',DataVenda ' +
-                                  ',TotalVenda) ' +
+                                  ',Data_Venda ' +
+                                  ',Total_Venda) ' +
                 'VALUES(:ClienteID ' +
-                      ',:DataVenda ' +
-                      ',:TotalVenda ');
+                      ',:Data_Venda ' +
+                      ',:Total_Venda)');
     Qry.ParamByName('ClienteID').AsInteger  := F_ClienteID;
-    Qry.ParamByName('DataVenda').AsDateTime := F_DataVenda;
-    Qry.ParamByName('TotalVenda').AsFloat   := F_TotalVenda;
+    Qry.ParamByName('Data_Venda').AsDateTime := F_DataVenda;
+    Qry.ParamByName('Total_Venda').AsFloat   := F_TotalVenda;
 
     try
       Qry.ExecSQL;
@@ -180,8 +180,8 @@ begin
       Qry.SQL.Clear;
       Qry.SQL.Add('SELECT ID ' +
                         ',ClienteID ' +
-                        ',DataVenda ' +
-                        ',TotalVenda ' +
+                        ',Data_Venda ' +
+                        ',Total_Venda ' +
                   'FROM dbo.Vendas WITH (NOLOCK) ' +
                   'WHERE ID = :Id' );
       Qry.ParamByName('Id').AsInteger := id;
@@ -191,8 +191,8 @@ begin
 
         Self.ID         := Qry.FieldByName('ID').AsInteger;
         Self.ClienteID  := Qry.FieldByName('ClienteID').AsInteger;
-        Self.DataVenda  := Qry.FieldByName('DataVenda').AsDateTime;
-        Self.TotalVenda := Qry.FieldByName('TotalVenda').AsFloat;
+        Self.DataVenda  := Qry.FieldByName('Data_Venda').AsDateTime;
+        Self.TotalVenda := Qry.FieldByName('Total_Venda').AsFloat;
       except
         Result := False;
       end;
