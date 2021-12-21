@@ -1,4 +1,4 @@
-object dtmVenda: TdtmVenda
+object dtmVendas: TdtmVendas
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
@@ -73,11 +73,6 @@ object dtmVenda: TdtmVenda
     object cdsItemsVendaValorTotalProduto: TFloatField
       DisplayLabel = 'Total do Produto'
       FieldName = 'ValorTotalProduto'
-    end
-    object cdsItemsVendaValorTotalVenda: TAggregateField
-      FieldName = 'ValorTotalVenda'
-      DisplayName = ''
-      Expression = 'SUM(ValorTotalProduto)'
     end
   end
   object dtsCliente: TDataSource
