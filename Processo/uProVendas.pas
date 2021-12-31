@@ -80,7 +80,7 @@ uses udtmConexao;
 {$Region 'Override'}
 function TfrmProVenda.Apagar: Boolean;
 begin
-  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
+  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger, dtmVendas.cdsItemsVenda) then
     Result := oVenda.Apagar;
 end;
 
@@ -98,7 +98,7 @@ begin
   if EstadoDoCadastro = ecInserir then
     Result := oVenda.Inserir(dtmVendas.cdsItemsVenda)
   else if EstadoDoCadastro = ecAlterar then
-    Result := oVenda.Atualizar;
+    Result := oVenda.Atualizar(dtmVendas.cdsItemsVenda);
 
 end;
 {$EndRegion}
@@ -176,7 +176,7 @@ end;
 
 procedure TfrmProVenda.btnAlterarClick(Sender: TObject);
 begin
-  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger) then begin
+  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger, dtmVendas.cdsItemsVenda) then begin
     edtVendaID.Text := IntToStr(oVenda.ID);
     dboCliente.KeyValue := oVenda.ClienteID;
     edtDataVenda.Date := oVenda.DataVenda;
