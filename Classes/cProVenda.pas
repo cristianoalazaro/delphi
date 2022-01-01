@@ -226,15 +226,22 @@ end;
 
 function TVenda.ApagaItens(cds:TClientDataset): Boolean;
 var Qry: TZQuery;
+    sCodNoCds: String;
 begin
   try
     Result := true;
+    //Pega os códigos que estão no ClientDataset para selecionar o InNot do banco de dados
+    sCodNoCds := InNot(cds);
+
+    //Retorna o estoque
+    RetornarEstoque(sCodNoCds, aeeApagar);
+
     Qry := TZQuery.Create(Nil);
     Qry.Connection := Conexao;
     Qry.SQL.Clear;
     Qry.SQL.Add('DELETE FROM Vendas_Items ' +
                 'WHERE VendaID = :VendaID ' +
-                'AND ProdutoID NOT IN (' + InNot(cds) + ')');
+                'AND ProdutoID NOT IN (' + sCodNoCds + ')');
     Qry.ParamByName('VendaID').AsInteger := Self.F_ID;
 
     try
