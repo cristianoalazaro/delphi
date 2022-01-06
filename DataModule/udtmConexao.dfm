@@ -10,6 +10,8 @@ object dtmConexao: TdtmConexao
     Properties.Strings = (
       'controls_cp=CP_UTF16'
       'AutoEncodeStrings=True')
+    AutoCommit = False
+    Connected = True
     SQLHourGlass = True
     HostName = '.\SQLEXPRESS'
     Port = 0

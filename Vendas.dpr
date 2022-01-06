@@ -16,7 +16,9 @@ uses
   udtmVenda in 'DataModule\udtmVenda.pas' {dtmVendas: TDataModule},
   uProVendas in 'Processo\uProVendas.pas' {frmProVenda},
   cProVenda in 'Classes\cProVenda.pas',
-  cControleEstoque in 'Classes\cControleEstoque.pas';
+  cControleEstoque in 'Classes\cControleEstoque.pas',
+  uRelCadCliente in 'Relatorio\uRelCadCliente.pas' {frmRelCadCliente},
+  uRelCategoria in 'Relatorio\uRelCategoria.pas' {frmRelCategoria};
 
 {$R *.res}
 
