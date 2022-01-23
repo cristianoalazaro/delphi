@@ -25,6 +25,7 @@ type
     N4: TMenuItem;
     Vendapordata1: TMenuItem;
     Categoria2: TMenuItem;
+    FichadeCliente1: TMenuItem;
     procedure mnmFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Categoria1Click(Sender: TObject);
@@ -34,6 +35,7 @@ type
     procedure Venda1Click(Sender: TObject);
     procedure Categoria2Click(Sender: TObject);
     procedure Cliente2Click(Sender: TObject);
+    procedure FichadeCliente1Click(Sender: TObject);
   private
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
     { Private declarations }
@@ -49,7 +51,7 @@ implementation
 {$R *.dfm}
 
 uses uCadCategoria, uCadCliente, uCadProduto, uProVendas, uRelCategoria,
-  uRelCadCliente;
+  uRelCadCliente, uRelCadClienteFicha;
 
 procedure TfrmPrincipal.Categoria1Click(Sender: TObject);
 begin
@@ -77,6 +79,13 @@ begin
   frmRelCadCliente := TfrmRelCadCliente.Create(Self);
   frmRelCadCliente.Relatorio.PreviewModal;
   frmRelCadCliente.Release;
+end;
+
+procedure TfrmPrincipal.FichadeCliente1Click(Sender: TObject);
+begin
+  frmRelCadClienteFicha := TfrmRelCadClienteFicha.Create(Self);
+  frmRelCadClienteFicha.Relatorio.PreviewModal;
+  frmRelCadClienteFicha.Release;
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);

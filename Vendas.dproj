@@ -144,12 +144,16 @@
         </DCCReference>
         <DCCReference Include="Classes\cProVenda.pas"/>
         <DCCReference Include="Classes\cControleEstoque.pas"/>
-        <DCCReference Include="Relatorio\uRelCadCliente.pas">
-            <Form>frmRelCadCliente</Form>
+        <DCCReference Include="Relatorio\uRelCadClienteFicha.pas">
+            <Form>frmRelCadClienteFicha</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Relatorio\uRelCategoria.pas">
             <Form>frmRelCategoria</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Relatorio\uRelCadCliente.pas">
+            <Form>frmRelCadCliente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

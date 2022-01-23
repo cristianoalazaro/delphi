@@ -17,8 +17,9 @@ uses
   uProVendas in 'Processo\uProVendas.pas' {frmProVenda},
   cProVenda in 'Classes\cProVenda.pas',
   cControleEstoque in 'Classes\cControleEstoque.pas',
-  uRelCadCliente in 'Relatorio\uRelCadCliente.pas' {frmRelCadCliente},
-  uRelCategoria in 'Relatorio\uRelCategoria.pas' {frmRelCategoria};
+  uRelCadClienteFicha in 'Relatorio\uRelCadClienteFicha.pas' {frmRelCadClienteFicha},
+  uRelCategoria in 'Relatorio\uRelCategoria.pas' {frmRelCategoria},
+  uRelCadCliente in 'Relatorio\uRelCadCliente.pas' {frmRelCadCliente};
 
 {$R *.res}
 
