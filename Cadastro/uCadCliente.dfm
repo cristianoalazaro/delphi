@@ -50,6 +50,7 @@ inherited frmCadCliente: TfrmCadCliente
         Width = 81
         Height = 13
         Caption = 'Data Nascimento'
+        OnClick = Label3Click
       end
       object edtClienteID: TLabeledEdit
         Tag = 1

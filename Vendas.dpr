@@ -18,8 +18,11 @@ uses
   cProVenda in 'Classes\cProVenda.pas',
   cControleEstoque in 'Classes\cControleEstoque.pas',
   uRelCadClienteFicha in 'Relatorio\uRelCadClienteFicha.pas' {frmRelCadClienteFicha},
+  uRelCadProdutoCategoria in 'Relatorio\uRelCadProdutoCategoria.pas' {frmRelCadProdutoCategoria},
+  uRelCadCliente in 'Relatorio\uRelCadCliente.pas' {frmRelCadCliente},
   uRelCategoria in 'Relatorio\uRelCategoria.pas' {frmRelCategoria},
-  uRelCadCliente in 'Relatorio\uRelCadCliente.pas' {frmRelCadCliente};
+  uRelCadProduto in 'Relatorio\uRelCadProduto.pas' {frmRelCadProduto},
+  uSelecionarData in 'Relatorio\uSelecionarData.pas' {frmSelecionarData};
 
 {$R *.res}
 

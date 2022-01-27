@@ -72,12 +72,18 @@ object frmPrincipal: TfrmPrincipal
       end
       object Produto2: TMenuItem
         Caption = '&Produto'
+        OnClick = Produto2Click
+      end
+      object ProdutosporCategoria1: TMenuItem
+        Caption = 'Produtos por Ca&tegoria'
+        OnClick = ProdutosporCategoria1Click
       end
       object N4: TMenuItem
         Caption = '-'
       end
       object Vendapordata1: TMenuItem
         Caption = '&Venda por data'
+        OnClick = Vendapordata1Click
       end
     end
   end

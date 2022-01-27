@@ -1,7 +1,7 @@
-object frmRelCategoria: TfrmRelCategoria
+object frmRelCadProduto: TfrmRelCadProduto
   Left = 0
   Top = 0
-  Caption = 'frmRelCategoria'
+  Caption = 'frmRelCadProduto'
   ClientHeight = 413
   ClientWidth = 770
   Color = clBtnFace
@@ -20,7 +20,7 @@ object frmRelCategoria: TfrmRelCategoria
     Top = 0
     Width = 794
     Height = 1123
-    DataSource = dtsCategoria
+    DataSource = dtsProduto
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
@@ -35,9 +35,9 @@ object frmRelCategoria: TfrmRelCategoria
       object RLLabel1: TRLLabel
         Left = 0
         Top = 8
-        Width = 245
+        Width = 229
         Height = 24
-        Caption = 'Listagem de Categorias'
+        Caption = 'Listagem de Produtos'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -21
@@ -125,10 +125,10 @@ object frmRelCategoria: TfrmRelCategoria
       object RLDBText2: TRLDBText
         Left = 92
         Top = 3
-        Width = 62
+        Width = 38
         Height = 16
-        DataField = 'DESCRIPTION'
-        DataSource = dtsCategoria
+        DataField = 'Nome'
+        DataSource = dtsProduto
         Text = ''
       end
       object DBEdit1: TDBEdit
@@ -137,7 +137,7 @@ object frmRelCategoria: TfrmRelCategoria
         Width = 134
         Height = 24
         DataField = 'ID'
-        DataSource = dtsCategoria
+        DataSource = dtsProduto
         TabOrder = 1
       end
       object RLDBText1: TRLDBText
@@ -146,7 +146,27 @@ object frmRelCategoria: TfrmRelCategoria
         Width = 16
         Height = 16
         DataField = 'ID'
-        DataSource = dtsCategoria
+        DataSource = dtsProduto
+        Text = ''
+      end
+      object RLDBText3: TRLDBText
+        Left = 506
+        Top = 0
+        Width = 70
+        Height = 16
+        Alignment = taRightJustify
+        DataField = 'Quantidade'
+        DataSource = dtsProduto
+        Text = ''
+      end
+      object RLDBText4: TRLDBText
+        Left = 677
+        Top = 3
+        Width = 34
+        Height = 16
+        Alignment = taRightJustify
+        DataField = 'Valor'
+        DataSource = dtsProduto
         Text = ''
       end
     end
@@ -181,9 +201,35 @@ object frmRelCategoria: TfrmRelCategoria
         object RLLabel7: TRLLabel
           Left = 92
           Top = 11
-          Width = 66
+          Width = 41
           Height = 16
-          Caption = 'Descri'#231#227'o'
+          Caption = 'Nome'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object RLLabel4: TRLLabel
+          Left = 444
+          Top = 11
+          Width = 132
+          Height = 16
+          Caption = 'Quantidade Estoque'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object RLLabel5: TRLLabel
+          Left = 673
+          Top = 11
+          Width = 38
+          Height = 16
+          Caption = 'Valor'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -194,30 +240,38 @@ object frmRelCategoria: TfrmRelCategoria
       end
     end
   end
-  object qryCategoria: TZQuery
+  object qryProduto: TZQuery
     Connection = dtmConexao.ConexaoDB
     SQL.Strings = (
       'SELECT ID'
-      '      ,DESCRIPTION'
-      'FROM dbo.Categorias WITH (NOLOCK)'
-      'ORDER BY DESCRIPTION')
+      '      ,Nome'
+      '      ,Valor'
+      '      ,Quantidade'
+      'FROM dbo.Produtos WITH (NOLOCK)'
+      'ORDER BY Nome')
     Params = <>
     Left = 336
     Top = 96
-    object qryCategoriaID: TIntegerField
+    object qryProdutoID: TIntegerField
       FieldName = 'ID'
       ReadOnly = True
     end
-    object qryCategoriaDESCRIPTION: TWideStringField
-      DisplayLabel = 'Descri'#231#227'o'
-      FieldName = 'DESCRIPTION'
-      Required = True
-      Size = 50
+    object qryProdutoNome: TWideStringField
+      FieldName = 'Nome'
+      Size = 60
+    end
+    object qryProdutoValor: TFloatField
+      FieldName = 'Valor'
+      DisplayFormat = '#0.00'
+    end
+    object qryProdutoQuantidade: TFloatField
+      FieldName = 'Quantidade'
+      DisplayFormat = '#0.00'
     end
   end
-  object dtsCategoria: TDataSource
+  object dtsProduto: TDataSource
     AutoEdit = False
-    DataSet = qryCategoria
+    DataSet = qryProduto
     Left = 424
     Top = 96
   end

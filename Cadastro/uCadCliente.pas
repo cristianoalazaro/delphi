@@ -38,6 +38,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
+    procedure Label3Click(Sender: TObject);
   private
     { Private declarations }
     oCliente: TCliente;
@@ -85,6 +86,12 @@ begin
   else if EstadoDoCadastro = ecAlterar then
     Result := oCliente.Atualizar;
 end;
+procedure TfrmCadCliente.Label3Click(Sender: TObject);
+begin
+  inherited;
+
+end;
+
 {$EndRegion}
 
 procedure TfrmCadCliente.btnAlterarClick(Sender: TObject);
