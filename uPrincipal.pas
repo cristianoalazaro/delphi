@@ -56,7 +56,7 @@ implementation
 
 uses uCadCategoria, uCadCliente, uCadProduto, uProVendas, uRelCategoria,
   uRelCadCliente, uRelCadClienteFicha, uRelCadProduto, uRelCadProdutoCategoria,
-  uSelecionarData;
+  uSelecionarData, uRelVendaPorData;
 
 procedure TfrmPrincipal.Categoria1Click(Sender: TObject);
 begin
@@ -148,9 +148,22 @@ end;
 
 procedure TfrmPrincipal.Vendapordata1Click(Sender: TObject);
 begin
-  frmSelecionarData :=  TfrmSelecionarData.Create(Self);
-  frmSelecionarData.ShowModal;
-  frmSelecionarData.Release;
+  try
+    frmSelecionarData :=  TfrmSelecionarData.Create(Self);
+    frmSelecionarData.ShowModal;
+
+    frmRelVendaPorData := TfrmRelVendaPorData.Create(Self);
+    frmRelVendaPorData.qryVenda.Close;
+    frmRelVendaPorData.qryVenda.ParamByName('Data_Inicial').AsDate :=
+      frmSelecionarData.edtDataInicial.Date;
+    frmRelVendaPorData.qryVenda.ParamByName('Data_Final').AsDate :=
+      frmSelecionarData.edtDataFinal.Date;
+    frmRelVendaPorData.qryVenda.Open;
+    frmRelVendaPorData.Relatorio.PreviewModal;
+  finally
+    frmSelecionarData.Release;
+    frmRelVendaPorData.Release;
+  end;
 end;
 
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm: TfrmAtualizaDB);

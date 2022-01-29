@@ -39,7 +39,7 @@ type
   //Variáveis públicas
   constructor Create(aConexao: TZConnection);
   destructor Destroy; override;
-  function Inserir(cds: TClientDataSet):Boolean;
+  function Inserir(cds: TClientDataSet):Integer;
   function Atualizar(cds: TClientDataSet):Boolean;
   function Apagar:Boolean;
   function Selecionar(id:Integer; var cds: TClientDataSet):Boolean;
@@ -272,12 +272,11 @@ begin
   Result := sInNot;
 end;
 
-function TVenda.Inserir(cds: TClientDataSet): Boolean;
+function TVenda.Inserir(cds: TClientDataSet): Integer;
   var Qry: TZQuery;
       IDVendaGerado: Integer;
 begin
   try
-    Result := True;
     Conexao.StartTransaction;
     Qry := TZQuery.Create(nil);
     Qry.Connection := Conexao;
@@ -313,9 +312,10 @@ begin
       {$EndRegion}
 
       Conexao.Commit;
+      Result := IDVendaGerado;
     except
       Conexao.Rollback;
-      Result := False;
+      Result := -1;
     end;
   finally
     if Assigned(Qry) then

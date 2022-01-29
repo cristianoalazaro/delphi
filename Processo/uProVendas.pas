@@ -75,7 +75,7 @@ implementation
 
 {$R *.dfm}
 
-uses udtmConexao;
+uses udtmConexao, uRelVenda;
 
 {$Region 'Override'}
 function TfrmProVenda.Apagar: Boolean;
@@ -96,9 +96,23 @@ begin
   oVenda.TotalVenda := edtTotalVenda.Value;
 
   if EstadoDoCadastro = ecInserir then
-    Result := oVenda.Inserir(dtmVendas.cdsItemsVenda)
+    oVenda.ID := oVenda.Inserir(dtmVendas.cdsItemsVenda)
   else if EstadoDoCadastro = ecAlterar then
-    Result := oVenda.Atualizar(dtmVendas.cdsItemsVenda);
+    oVenda.Atualizar(dtmVendas.cdsItemsVenda);
+
+  Result := true;
+
+  frmRelVenda := TfrmRelVenda.Create(Self);
+  frmRelVenda.qryVenda.Close;
+  frmRelVenda.qryVenda.ParamByName('Vendas_ID').AsInteger := oVenda.ID;
+  frmRelVenda.qryVenda.Open;
+
+  frmRelVenda.qryVendaItem.Close;
+  frmRelVenda.qryVendaItem.ParamByName('VendaID').AsInteger := oVenda.ID;
+  frmRelVenda.qryVendaItem.Open;
+
+  frmRelVenda.Relatorio.PreviewModal;
+  frmRelVenda.Release;
 
 end;
 {$EndRegion}

@@ -148,8 +148,8 @@
             <Form>frmRelCadClienteFicha</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Relatorio\uRelCadProdutoCategoria.pas">
-            <Form>frmRelCadProdutoCategoria</Form>
+        <DCCReference Include="Relatorio\uRelVenda.pas">
+            <Form>frmRelVenda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Relatorio\uRelCadCliente.pas">
@@ -166,6 +166,14 @@
         </DCCReference>
         <DCCReference Include="Relatorio\uSelecionarData.pas">
             <Form>frmSelecionarData</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Relatorio\uRelCadProdutoCategoria.pas">
+            <Form>frmRelCadProdutoCategoria</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Relatorio\uRelVendaPorData.pas">
+            <Form>frmRelVendaPorData</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
